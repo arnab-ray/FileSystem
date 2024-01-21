@@ -10,18 +10,18 @@ import java.util.UUID;
 @Getter
 public class Inode {
 
-    private final Map<String, BlockInfo> inodes;
+    private final Map<String, BlockInfo> inodeEntries;
 
     public Inode() {
-        this.inodes = new HashMap<>();
+        this.inodeEntries = new HashMap<>();
     }
 
     public synchronized void updateFileMetadata(String fileName, List<UUID> blockIds, UUID blockDeviceId) {
         BlockInfo blockInfo = new BlockInfo(blockIds, blockDeviceId);
-        this.inodes.put(fileName, blockInfo);
+        this.inodeEntries.put(fileName, blockInfo);
     }
 
     public BlockInfo getFileMetadata(String fileName) {
-        return this.inodes.get(fileName);
+        return this.inodeEntries.get(fileName);
     }
 }
