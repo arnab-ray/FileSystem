@@ -19,7 +19,7 @@ public class FileSystem {
         this.files = new HashMap<>();
         this.blockDevices = new HashMap<>();
 
-        BlockDevice blockDevice = new BlockDevice();
+        BlockDevice blockDevice = BlockDevice.getInstance();
         blockDevices.putIfAbsent(blockDevice.getId(), blockDevice);
     }
 

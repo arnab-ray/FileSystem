@@ -16,7 +16,7 @@ public class BlockDevice {
     private final List<Block> usedBlocks;
     private final int numberOfBlocks = 64;
 
-    public BlockDevice() {
+    private BlockDevice() {
         this.id = UUID.randomUUID();
         this.blocks = new LinkedList<>();
         for (int i = 0; i < numberOfBlocks; i++) {
@@ -24,6 +24,14 @@ public class BlockDevice {
         }
 
         this.usedBlocks = new LinkedList<>();
+    }
+
+    private static class SingletonHelper {
+        private static final BlockDevice INSTANCE = new BlockDevice();
+    }
+
+    public static BlockDevice getInstance() {
+        return SingletonHelper.INSTANCE;
     }
 
     public synchronized List<UUID> writeData(String data) {
